@@ -1,21 +1,29 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
+import dayjs from "dayjs";
+import { isSameMonth, isFirstDay, isSameDay } from "../../services/calendar";
 import * as styles from "./style.css";
 
 const CalendarElement = ({ day }) => {
 
-  const isFirstDay = day.date() === 1;
-  const format = isFirstDay ? "M月D日" : "D";
+  const today = dayjs();
+  const isCurrentMonth = isSameMonth(day, today);
+  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+  const format = isFirstDay(day) ? "M月D日" : "D";
+  const isToday = isSameDay(day, today);
 
   return (
     <div className={styles.element}>
       <Typography
         className={styles.date}
+        color={textColor}
         align="center"
         variant="caption"
         component="div"
       >
-        {day.format(format)}
+        <span className={isToday ? styles.today : ""}>
+          {day.format(format)}
+        </span>
       </Typography>
     </div>
   );
