@@ -10,7 +10,7 @@ const store = createStore(rootReducer);
 const App = () => (
   <Provider store={store}>
     <Counter />
-</Provider>
+  </Provider>
 );
 
 ReactDOM.render(<App />, document.getElementById("root"));

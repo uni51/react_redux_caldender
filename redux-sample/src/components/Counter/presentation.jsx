@@ -2,7 +2,6 @@
 import React from "react";
 
 const Counter = ({ count, increment, decrement }) => {
-
   return (
     <>
       <div>{count}</div>
